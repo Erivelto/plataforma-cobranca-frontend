@@ -41,11 +41,16 @@
         });
       }
     </script>
-    <script
-      defer
-      type="module"
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"
-    ></script>
+    <!-- Analytics - Only load if endpoint is configured -->
+    <script>
+      if ('%VITE_ANALYTICS_ENDPOINT%' && '%VITE_ANALYTICS_ENDPOINT%' !== '' && !('%VITE_ANALYTICS_ENDPOINT%'.startsWith('%'))) {
+        const script = document.createElement('script');
+        script.defer = true;
+        script.type = 'module';
+        script.src = '%VITE_ANALYTICS_ENDPOINT%/umami';
+        script.setAttribute('data-website-id', '%VITE_ANALYTICS_WEBSITE_ID%');
+        document.head.appendChild(script);
+      }
+    </script>
   </body>
 </html>

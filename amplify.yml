@@ -9,9 +9,11 @@ frontend:
         - npm ci --legacy-peer-deps
     build:
       commands:
-        - echo "Building React frontend and Node.js backend"
+        - echo "Building React frontend with Vite"
         - npm run build
         - echo "Build completed successfully"
+        - echo "Checking frontend build output:"
+        - ls -la client/dist/
   artifacts:
     baseDirectory: client/dist
     files:
@@ -19,16 +21,3 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
-backend:
-  phases:
-    preBuild:
-      commands:
-        - echo "Backend build phase"
-    build:
-      commands:
-        - echo "Building Node.js server"
-        - ls -la dist/
-  artifacts:
-    baseDirectory: dist
-    files:
-      - '**/*'

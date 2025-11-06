@@ -1,0 +1,34 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "Starting AWS Amplify build for Plataforma de Cobrança"
+        - node --version
+        - npm --version
+        - npm ci --legacy-peer-deps
+    build:
+      commands:
+        - echo "Building React frontend and Node.js backend"
+        - npm run build
+        - echo "Build completed successfully"
+  artifacts:
+    baseDirectory: client/dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+backend:
+  phases:
+    preBuild:
+      commands:
+        - echo "Backend build phase"
+    build:
+      commands:
+        - echo "Building Node.js server"
+        - ls -la dist/
+  artifacts:
+    baseDirectory: dist
+    files:
+      - '**/*'

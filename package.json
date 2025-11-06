@@ -8,8 +8,9 @@
     "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "start": "node dist/index.js",
     "start:prod": "cross-env NODE_ENV=production node dist/index.js",
-    "azure:build": "npm install && npm run build",
-    "azure:start": "node dist/index.js",
+    "aws:build": "npm install --legacy-peer-deps && npm run build",
+    "aws:start": "node dist/index.js",
+    "aws:deploy": "aws amplify start-deployment --app-id $AWS_APP_ID --branch-name main",
     "preview": "vite preview --host",
     "check": "tsc --noEmit",
     "format": "prettier --write ."
